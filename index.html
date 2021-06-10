@@ -15,30 +15,23 @@
 		<title>Full Map of Members of Parliament</title>
 	</head>
 	<body>
-		<header>
-			<nav class="navbar">
-				<ul class="navbar-links">
-					<li><a href="/home.html">Home</a></li>
-					<li><a href="#">Portfolio</a></li>
-					<li><a href="#">About</a></li>
-				</ul>
-			</nav>
-		</header>
-
+		<nav class="navbar">
+			<ul class="navbar-links">
+				<li><a href="/home.html">Home</a></li>
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</nav>
 		<main>
 			<div id="map-container">
 				<div id="greater-london-map">
-					<div id="testing-area" class="constit-text">
-						<p>Hover over a constituency</p>
-					</div>
 					<svg
 						xmlns:svg="http://www.w3.org/2000/svg"
 						xmlns="http://www.w3.org/2000/svg"
 						version="1.1"
 						viewBox="0 0 1425 1140"
-						width="100%"
+						width="100vmin"
 						id="svg2"
-						style="margin: auto; display: inline-block"
 					>
 						<g id="Consts" transform="matrix(1,0,0,1.6,0,-62.661196)">
 							<path
@@ -992,26 +985,39 @@
 							/>
 						</g>
 					</svg>
+					<div class="map-tooltip"></div>
 				</div>
-				<div id="member-card">
-					<div id="loading-area">
-						<div id="loading-bar"></div>
+				<div class="search-container">
+					<div class="constituency-group">
+						<input
+							type="text"
+							name="mpSearch"
+							id="mpSearch"
+							placeholder="Find your Constituency here..."
+						/>
 					</div>
-					<div id="member-info">
+					<div id="match-list"></div>
+				</div>
+				<div id="member-info">
+					<div id="member-card">
+						<div id="loading-area">
+							<div id="loading-bar"></div>
+						</div>
 						<div id="member-pic-area">
 							<div id="member-svg"><img src="" alt="" /></div>
 							<div id="member-pic"><img src="" alt="" /></div>
 						</div>
 						<div id="member-name"></div>
 						<div id="member-area"></div>
+						<div id="member-link">
+							<img
+								src="public/svg/Votes.svg"
+								alt="Click to vote here"
+								srcset=""
+							/>
+						</div>
 					</div>
-					<div id="member-link">
-						<img
-							src="public/svg/Votes.svg"
-							alt="Click to vote here"
-							srcset=""
-						/>
-					</div>
+				
 				</div>
 			</div>
 		</main>

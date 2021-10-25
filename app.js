@@ -5,14 +5,14 @@ async function mpData(entry) {
 		`https://members-api.parliament.uk/api/Location/Constituency/Search?searchText=${entry.id}&skip=0`
 	);
 	const data = await response.json();
-	const fullNameMP =
-		data.items[0].value.currentRepresentation.member.value.nameFullTitle;
+	const fullNameMP = await data.items[0].value.currentRepresentation.member
+		.value.nameFullTitle;
 	const imageMP = await data.items[0].value.currentRepresentation.member.value
 		.thumbnailUrl;
-	const mpPartyAbr =
-		data.items[0].value.currentRepresentation.member.value.latestParty
-			.abbreviation;
-	$("#loading-area").removeClass("active");
+	const mpPartyAbr = await data.items[0].value.currentRepresentation.member
+		.value.latestParty.abbreviation;
+	$("#member-card").css("display", "flex");
+	$(".launch-info").css("display", "none");
 	$("#member-link").css("display", "block");
 	$("#member-pic > img").attr("src", `${imageMP}`);
 	$("#member-name").text(fullNameMP);
@@ -33,17 +33,24 @@ async function mpData(entry) {
 
 function show(e) {
 	mpData(e.target);
-	$("#loading-area").addClass("active");
-	$(e.target.innerHTML).css("fill", "#448fda");
 }
 
-const constituencies = document.getElementsByTagName("path");
-const constituencyArr = Array.from(constituencies);
-const search = document.getElementById("mpSearch");
-const constituencyList = document.getElementById("match-list");
-const spinner = document.querySelector("#loading-area");
+// Swtich Views for Map and Search Bar
+
+$("#map").click(function () {
+	$("#map-view").css("display", "block");
+	$("#search-view").css("display", "none");
+});
+$("#search").click(function () {
+	$("#search-view").css("display", "block");
+	$("#map-view").css("display", "none");
+});
 
 // Search Bar
+
+const constituencyArr = Array.from($("path"));
+const search = $("#mpSearch")[0];
+const constituencyList = $("#match-list")[0];
 
 constituencyList.innerHTML = constituencyArr
 	.map(
@@ -79,7 +86,6 @@ $(document).ready(() => {
 			})
 			.click(() => {
 				$(c).css("fill", "#b89bff");
-				$("#loading-area").addClass("active");
 				mpData(c);
 			});
 	});
@@ -88,8 +94,7 @@ $(document).ready(() => {
 // Tooltip
 
 const tooltip = document.querySelector(".map-tooltip");
-
-[].forEach.call(constituencyArr, function (item) {
+constituencyArr.forEach((item) => {
 	item.addEventListener("mousemove", function (e) {
 		tooltip.style.display = "block";
 		tooltip.style.top = 10 + e.clientY + "px";

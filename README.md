@@ -47,3 +47,5 @@ search.addEventListener("input", (e) => {
 ### What to improve
 
 SVG is difficult to convert to responsive, especially for grid/flexbox layouts, so I would be continuing its implementation of its other uses in more projects. In addition, creation of a raw map of London containing the locations of each constituency is essential should I face any issues with copyright from third-party websites.
+
+For the next version would be to include the votes of the MPs, adding a graph to display the data, as well as show different attributes of the chosen MP to give a more detailed info page on their interests and policies.
